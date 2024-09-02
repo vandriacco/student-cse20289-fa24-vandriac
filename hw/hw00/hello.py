@@ -3,6 +3,6 @@
 # Run this file by executing the following command:
 # python3 hello.py
 
-NetID = 'striegel'
+NetID = 'vandriac'
 
 print('Hello, my netID is ' + NetID + '.')
