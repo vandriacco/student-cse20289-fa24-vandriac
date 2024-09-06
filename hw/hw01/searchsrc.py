@@ -76,13 +76,16 @@ args = parser.parse_args()
 file = readFile(args.file_name)
 
 # chooses correct output based on flag given
+print('file:', args.file_name)
+print('lines:', countLine(file))
+
 if args.include:
-    print('file:', args.file_name, 'lines:', countLine(file), 'include:', countInclude(file))
-elif args.member:
-    print('file:', args.file_name, 'lines:', countLine(file), 'member:', countMember(file))
-elif args.ptr:
-    print('file:', args.file_name, 'lines:', countLine(file), 'ptr:', countPointer(file))
-elif args.simplefunc:
-    print('file:', args.file_name, 'lines:', countLine(file), 'simplefunc:', countSimpleFunc(file))
-elif args.simplefuncec:
-    print('file:', args.file_name, 'lines:', countLine(file), 'simplefunc:', countSimpleFuncEC(file))
+    print('include:', countInclude(file))
+if args.member:
+    print('member:', countMember(file))
+if args.ptr:
+    print('ptr:', countPointer(file))
+if args.simplefunc:
+    print('simplefunc:', countSimpleFunc(file))
+if args.simplefuncec:
+    print('simplefunc:', countSimpleFuncEC(file))
