@@ -38,23 +38,33 @@ parser.add_argument("--quiet", action="store_true")
 args = parser.parse_args()
 
 def scan_dir(dir, is_quiet=False, is_recursive=False):
-    sub_dirs = os.listdir(dir)
-    
+    children = os.listdir(dir)
+
     # gets files from list of sub-directories
     files = []
-    for sub_dir in sub_dirs:
-        if sub_dir.endswith(".cc"):
-            files.append(sub_dir)
+    sub_dirs = []
+    for child in children:
+        if child.endswith(".cc"):
+            files.append(child)
+        else:
+            sub_dirs.append(child)
+
 
     directories = []
-    for file in files:
-        output = process_file(dir, file)
-        directories.append(output["path"] + file)
-        if not is_quiet:
-            print_dict(output)
+    if files:
+        for file in files:
+            output = process_file(dir, file)
+            directories.append(output["path"] + file)
+            if not is_quiet:
+                print_dict(output)
 
+    if is_recursive:
+        if not sub_dirs:
+            return directories
+        
+        for sub_dir in sub_dirs:
+            directories += scan_dir(os.path.join(dir, sub_dir), is_quiet=is_quiet, is_recursive=is_recursive)
+    
     return directories
 
-print(scan_dir(args.directory, is_quiet=args.quiet))
-
-# print(os.walk("src"))
+print(scan_dir(args.directory, is_quiet=args.quiet, is_recursive=args.r))
