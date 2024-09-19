@@ -1,6 +1,7 @@
 import os
 import subprocess
 import argparse
+import csv
 
 def process_file(path, file):
     full_path = os.path.join(path, file)
@@ -50,21 +51,32 @@ def scan_dir(dir, is_quiet=False, is_recursive=False):
             sub_dirs.append(child)
 
 
-    directories = []
+    dictionaries = []
     if files:
         for file in files:
             output = process_file(dir, file)
-            directories.append(output["path"] + file)
+            dictionaries.append(output)
             if not is_quiet:
                 print_dict(output)
 
     if is_recursive:
         if not sub_dirs:
-            return directories
+            return dictionaries
         
         for sub_dir in sub_dirs:
-            directories += scan_dir(os.path.join(dir, sub_dir), is_quiet=is_quiet, is_recursive=is_recursive)
+            dictionaries += scan_dir(os.path.join(dir, sub_dir), is_quiet=is_quiet, is_recursive=is_recursive)
     
-    return directories
+    return dictionaries
 
-print(scan_dir(args.directory, is_quiet=args.quiet, is_recursive=args.r))
+def create_csv(dict_list, csv_name):
+    with open(csv_name, 'w') as csvfile:
+        fieldnames = ["path", "file", "lines", "include", "includelocal", "memberfuncs", "onelinefuncs"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for dict in dict_list:
+            writer.writerow(dict)
+
+dict_list = scan_dir(args.directory, is_quiet=args.quiet, is_recursive=args.r)
+if args.csv:
+    create_csv(dict_list, args.csv)
