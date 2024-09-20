@@ -10,7 +10,6 @@ def process_file(path, file):
     full_path = os.path.join(path, file)
     output = subprocess.run(["python3", "searchsrc.py", full_path, "--include", "--includelocal", "--memberfuncs", "--onelinefunc"], capture_output=True, text=True)
     output_list = output.stdout.split("\n")
-
     while "" in output_list:
         output_list.remove("")
 
@@ -38,19 +37,21 @@ def scan_dir(dir, is_quiet=False, is_recursive=False):
     files = []
     sub_dirs = []
     for child in children:
+        child = os.path.join(dir, child)
         if child.endswith(".cc"):
             files.append(child)
-        else:
+        elif os.path.isdir(child):
             sub_dirs.append(child)
 
     # runs subprocess for each file
     dictionaries = []
     if files:
         for file in files:
-            output = process_file(dir, file)
-            dictionaries.append(output)
-            if not is_quiet:
-                print_dict(output)
+            output = process_file(dir, file.split("/")[-1])
+            if output:
+                dictionaries.append(output)
+                if not is_quiet:
+                    print_dict(output)
 
     # recursive call with base case
     if is_recursive:
@@ -58,7 +59,8 @@ def scan_dir(dir, is_quiet=False, is_recursive=False):
             return dictionaries
         
         for sub_dir in sub_dirs:
-            dictionaries += scan_dir(os.path.join(dir, sub_dir), is_quiet=is_quiet, is_recursive=is_recursive)
+            if os.listdir(sub_dir): # only makes recursive call if subdirectory is not empty
+                dictionaries += scan_dir(sub_dir, is_quiet=is_quiet, is_recursive=is_recursive)
     
     return dictionaries
 
@@ -165,18 +167,17 @@ if not os.path.isdir(args.directory):
     sys.stderr.write("error: directory does not exist, please enter an existing directory\n")
     sys.exit(1)
 
-if not os.listdir(args.directory):
-    sys.stderr.write("error: the inputed directory was empty\n")
-    sys.exit(1)
+# if not os.listdir(args.directory):
+#     sys.stderr.write("error: the inputed directory was empty\n")
+#     sys.exit(1)
 
 
 dict_list = scan_dir(args.directory, is_quiet=args.quiet, is_recursive=args.r)
-
 if args.csv:
     if os.path.isfile(args.csv):
         sys.stderr.write("error: csv file already exists, please choose a different name\n")
         sys.exit(1)
     create_csv(dict_list, args.csv)
 
-if args.stats:
+if args.stats and dict_list:
     compute_stats(dict_list)

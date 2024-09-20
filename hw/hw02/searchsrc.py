@@ -27,7 +27,7 @@ def countIncludeLocal(fileLines):
     num_includes = 0
     
     for line in fileLines:
-        if line.startswith("#include") and line.split()[1].startswith("\""):
+        if line.startswith("#include") and line.replace("#include", "").strip().startswith("\""):
             num_includes += 1
 
     return num_includes
