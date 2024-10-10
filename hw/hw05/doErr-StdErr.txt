@@ -1,0 +1,6 @@
+This print statement is correct
+Traceback (most recent call last):
+  File "/escnfs/home/vandriac/cse-20289-repos/student-cse20289-fa24-vandriac/hw/hw05/doErr.py", line 2, in <module>
+    print("This statement is not correct" + 4)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+TypeError: can only concatenate str (not "int") to str

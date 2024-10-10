@@ -1,0 +1,21 @@
+Python 3.12.4
+Python 3.12.4
+total 68
+-rw-r--r-- 1 vandriac notre-dame 2076 Sep 26 17:11 activate
+-rw-r--r-- 1 vandriac notre-dame  947 Sep 26 17:11 activate.csh
+-rw-r--r-- 1 vandriac notre-dame 2226 Sep 26 17:11 activate.fish
+-rw-r--r-- 1 vandriac notre-dame 9033 Sep 26 17:11 Activate.ps1
+-rwxr-xr-x 1 vandriac notre-dame  247 Sep 26 17:13 f2py
+-rwxr-xr-x 1 vandriac notre-dame  239 Oct  7 17:01 flask
+-rwxr-xr-x 1 vandriac notre-dame  248 Sep 26 17:13 fonttools
+-rwxr-xr-x 1 vandriac notre-dame  264 Sep 26 20:53 normalizer
+-rwxr-xr-x 1 vandriac notre-dame  247 Sep 26 17:13 numpy-config
+-rwxr-xr-x 1 vandriac notre-dame  252 Oct  3 21:42 pip
+-rwxr-xr-x 1 vandriac notre-dame  252 Oct  3 21:42 pip3
+-rwxr-xr-x 1 vandriac notre-dame  252 Oct  3 21:42 pip3.12
+-rwxr-xr-x 1 vandriac notre-dame  245 Sep 26 17:13 pyftmerge
+-rwxr-xr-x 1 vandriac notre-dame  246 Sep 26 17:13 pyftsubset
+lrwxrwxrwx 1 vandriac notre-dame    7 Sep 26 17:10 python -> python3
+lrwxrwxrwx 1 vandriac notre-dame   40 Sep 26 17:10 python3 -> /escnfs/home/pbui/pub/pkgsrc/bin/python3
+lrwxrwxrwx 1 vandriac notre-dame    7 Sep 26 17:10 python3.12 -> python3
+-rwxr-xr-x 1 vandriac notre-dame  243 Sep 26 17:13 ttx

@@ -1,0 +1,13 @@
+total 184
+-rw-r--r-- 1 vandriac notre-dame   119 Oct  9 21:43 host-ip-mac.csv
+-rw-r--r-- 1 vandriac notre-dame 80171 Oct  9 20:54 Out-Dump.txt
+-rw------- 1 vandriac notre-dame     0 Oct  9 21:44 out-ls
+-rw------- 1 vandriac notre-dame  3714 Oct  9 20:59 output-endFile.txt
+-rw------- 1 vandriac notre-dame    58 Oct  9 21:23 output-reverse.txt
+-rw------- 1 vandriac notre-dame  1853 Oct  9 20:59 output-startFile.txt
+-rw------- 1 vandriac notre-dame   464 Oct  9 21:21 output-xxd.txt
+-rw-r--r-- 1 vandriac notre-dame    44 Oct  9 20:51 README.md
+-rw------- 1 vandriac notre-dame   246 Oct  9 21:32 revND.txt
+-rw-r--r-- 1 vandriac notre-dame 67592 Oct  9 21:00 TestSmall.pcap
+-rw------- 1 vandriac notre-dame    27 Oct  9 20:56 theLines.txt
+-rw------- 1 vandriac notre-dame     9 Oct  9 20:53 VANDRIAC
