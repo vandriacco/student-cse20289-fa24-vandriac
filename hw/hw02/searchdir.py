@@ -1,3 +1,6 @@
+# Vince Andriacco
+# vandriac@nd.edu
+
 import os
 import subprocess
 import argparse

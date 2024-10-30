@@ -1,0 +1,6 @@
+Field, Min, MinFile, Max, MaxFile, Mean, Median, StdDev
+lines, 0, AppCBR.cc, 2662, fmnc_test_sequence.cc, 259.5419847328244, 104, 428.61081969799176
+includes, 0, AppCBR.cc, 20, IOModule.cc, 4.221374045801527, 4, 3.7029927113825063
+localincludes, 0, AppCBR.cc, 19, IOModule.cc, 3.2290076335877864, 2, 3.166081989064677
+memberfuncs, 0, whirlwind_support.cc, 84, fmnc_test_sequence.cc, 12.732824427480915, 7, 18.54882307171698
+onelinefuncs, 0, whirlwind_support.cc, 33, whirlwind_mastercache.cc, 3.717557251908397, 1, 6.298076396390721
