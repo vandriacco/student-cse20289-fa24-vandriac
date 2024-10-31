@@ -4,11 +4,16 @@
 import argparse
 import re
 import os
+import sys
 
 # reads file into list of strings
 def readFile(filename: str):
-    with open(filename, 'r') as file:
-        return file.readlines()
+    try:
+        with open(filename, 'r') as file:
+            return file.readlines()
+    except FileNotFoundError as e:
+        sys.stderr.write(e)
+        sys.exit(2)
 
 # counts number of lines in file
 def countLine(fileLines):
@@ -74,8 +79,18 @@ if __name__ == "__main__":
     parser.add_argument('--onelinefuncs', help='Count functions with one line', action='store_true')
 
     args = parser.parse_args()
-
+    
+    if os.path.isdir(args.file_name):
+        sys.stderr.write(f"'{args.file_name}' is a directory\n")
+        sys.exit(1)
+    
     file = readFile(args.file_name)
+
+    basename = getFileName(args.file_name)
+    if not basename.endswith('.cc'):
+        sys.stderr.write(f"file '{basename}' is not a .cc file\n")
+        sys.exit(1)
+
 
     # chooses correct output based on flag given
 
