@@ -43,7 +43,7 @@ def countMemberFuncs(fileLines):
     num_members = 0
 
     for line in fileLines:
-        if re.search("^[a-zA-Z0-9].*(::)", line):
+        if re.search("[a-zA-Z0-9].*(::)", line):
             num_members += 1
 
     return num_members

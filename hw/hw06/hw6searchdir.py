@@ -12,7 +12,7 @@ import sys
 def process_file(path, file):
     full_path = os.path.join(path, file)
     output = subprocess.run(
-        ["python3", "../hw6searchsrc.py", full_path, "--include", "--includelocal", "--memberfuncs", "--onelinefunc"], 
+        ["python3", "../hw6searchsrc.py", full_path, "--include", "--memberfuncs", "--onelinefunc"], 
         capture_output=True, 
         text=True)
     output_list = output.stdout.split("\n")
