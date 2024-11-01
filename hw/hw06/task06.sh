@@ -1,3 +1,6 @@
+# Vince Andriacco
+# vandriac@nd.edu
+
 #!/bin/sh
 
 date_string=$(date +%Y-%m-%d_%H-%M)

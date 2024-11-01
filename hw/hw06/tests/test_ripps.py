@@ -1,3 +1,6 @@
+# Vince Andriacco
+# vandriac@nd.edu
+
 import unittest
 import os
 import sys
