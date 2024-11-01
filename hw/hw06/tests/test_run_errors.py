@@ -10,7 +10,7 @@ class TestRunErrors(unittest.TestCase):
     def test_nofile(self):
         """Tests hw6searchsrc with no file provided"""
         output = subprocess.run(
-            ["python3", "../hw6searchsrc.py", "--include", "--includelocal", "--memberfuncs", "--onelinefunc"], 
+            ["python3", "/escnfs/home/vandriac/cse-20289-repos/student-cse20289-fa24-vandriac/hw/hw06/hw6searchsrc.py", "--include", "--includelocal", "--memberfuncs", "--onelinefunc"], 
             capture_output=True, 
             text=True
             )

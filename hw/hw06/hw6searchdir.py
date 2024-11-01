@@ -11,7 +11,10 @@ import sys
 # runs searchsrc.py on a given file and returns output as a dict
 def process_file(path, file):
     full_path = os.path.join(path, file)
-    output = subprocess.run(["python3", "searchsrc.py", full_path, "--include", "--includelocal", "--memberfuncs", "--onelinefunc"], capture_output=True, text=True)
+    output = subprocess.run(
+        ["python3", "../hw6searchsrc.py", full_path, "--include", "--includelocal", "--memberfuncs", "--onelinefunc"], 
+        capture_output=True, 
+        text=True)
     output_list = output.stdout.split("\n")
     while "" in output_list:
         output_list.remove("")
@@ -35,7 +38,6 @@ def print_dict(input_dict):
 # runs process_file on every file in a given directory
 def scan_dir(dir, is_quiet=False, is_recursive=False):
     children = os.listdir(dir)
-
     # separates files and subdirs from list of sub-directories
     files = []
     sub_dirs = []
@@ -156,31 +158,29 @@ def compute_stats(dict_list):
 
     
 
+if __name__ == "__main__":
+    # command argument parsing
+    parser = argparse.ArgumentParser(description="Analyze c++ files")
+    parser.add_argument("directory")
+    parser.add_argument("-r", action="store_true")
+    parser.add_argument("--csv")
+    parser.add_argument("--stats", action="store_true")
+    parser.add_argument("--quiet", action="store_true")
 
-# command argument parsing
-parser = argparse.ArgumentParser(description="Analyze c++ files")
-parser.add_argument("directory")
-parser.add_argument("-r", action="store_true")
-parser.add_argument("--csv")
-parser.add_argument("--stats", action="store_true")
-parser.add_argument("--quiet", action="store_true")
-
-args = parser.parse_args()
-if not os.path.isdir(args.directory):
-    sys.stderr.write("error: directory does not exist, please enter an existing directory\n")
-    sys.exit(1)
-
-# if not os.listdir(args.directory):
-#     sys.stderr.write("error: the inputed directory was empty\n")
-#     sys.exit(1)
-
-
-dict_list = scan_dir(args.directory, is_quiet=args.quiet, is_recursive=args.r)
-if args.csv:
-    if os.path.isfile(args.csv):
-        sys.stderr.write("error: csv file already exists, please choose a different name\n")
+    args = parser.parse_args()
+    if not os.path.isdir(args.directory):
+        sys.stderr.write("error: directory does not exist, please enter an existing directory\n")
         sys.exit(1)
-    create_csv(dict_list, args.csv)
 
-if args.stats and dict_list:
-    compute_stats(dict_list)
+    # if not os.listdir(args.directory):
+    #     sys.stderr.write("error: the inputed directory was empty\n")
+    #     sys.exit(1)
+    dict_list = scan_dir(args.directory, is_quiet=args.quiet, is_recursive=args.r)
+    if args.csv:
+        if os.path.isfile(args.csv):
+            sys.stderr.write("error: csv file already exists, please choose a different name\n")
+            sys.exit(1)
+        create_csv(dict_list, args.csv)
+
+    if args.stats and dict_list:
+        compute_stats(dict_list)
